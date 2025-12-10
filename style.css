@@ -24,7 +24,6 @@ html,body{
   position:relative;
 }
 
-/*  VHS шум + scanlines  */
 body::before{
   content:"";
   position:fixed;
@@ -41,7 +40,7 @@ body::before{
   mix-blend-mode:screen;
 }
 
-body::after{   /* scanlines */
+body::after{   
   content:"";
   position:fixed;
   inset:0;
@@ -70,7 +69,6 @@ body::after{   /* scanlines */
   z-index:2;
 }
 
-/*  хроматическая аберрация у винила  */
 .vinyl-wrap{
   position:relative;
   filter:drop-shadow(0 0 20px var(--pink)) saturate(1.2);
@@ -113,7 +111,6 @@ body::after{   /* scanlines */
   to{transform:rotate(360deg)}
 }
 
-/*  блики  */
 .vinyl .glare{
   position:absolute;
   inset:0;
@@ -135,7 +132,6 @@ body::after{   /* scanlines */
   box-shadow:inset 0 0 10px rgba(0,0,0,.7);
 }
 
-/*  правый блок  */
 .right{
   width:420px;
   max-width:50vw;
@@ -176,7 +172,6 @@ body::after{   /* scanlines */
   font-size:13px;
 }
 
-/*  диалог  */
 .dialog{
   margin-top:10px;
   min-height:100px;
@@ -191,7 +186,7 @@ body::after{   /* scanlines */
   position:relative;
   overflow:hidden;
 }
-.dialog::before{   /*  glitch-полоса  */
+.dialog::before{   
   content:"";
   position:absolute;
   top:-2px;
@@ -230,7 +225,6 @@ body::after{   /* scanlines */
   text-shadow:0 0 12px var(--pink);
 }
 
-/*  кнопки  */
 .controls{
   display:flex;
   gap:12px;
@@ -245,3 +239,4 @@ body::after{   /* scanlines */
   cursor:pointer;
   font-weight:600;
   transition
+
