@@ -37,6 +37,7 @@ showLine(0);
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let w, h;
+
 function resize(){
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
