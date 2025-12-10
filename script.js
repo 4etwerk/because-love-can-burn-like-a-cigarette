@@ -37,7 +37,6 @@ nextBtn.onclick = () => showLine(index + 1);
 prevBtn.onclick = () => showLine(index - 1);
 showLine(0);
 
-// Canvas particles
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let w, h;
@@ -74,3 +73,4 @@ function draw() {
   requestAnimationFrame(draw);
 }
 draw();
+
