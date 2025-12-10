@@ -7,9 +7,10 @@ const LINES = [
   "and drags you along",
   "She might want a kiss before the end of this song",
   "Because love...",
-  "can burn like a cigarette",
-  "And leave you with nothing",
-  "And leave you with nothing"
+  "Can burn like a cigarette",
+  "and leave you with nothing",
+  "and leave you with nothing"
+  "♪♪♪♪♪"
 ];
 
 const lyricEl = document.getElementById('lyric');
@@ -69,3 +70,4 @@ function draw(){
   requestAnimationFrame(draw);
 }
 draw();
+
