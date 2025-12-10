@@ -1,208 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TV Girl - Lovers Rock</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        background: radial-gradient(circle at 30% 30%, #20062d 10%, #0f479f 50%, #1a2c75 90%);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        font-family: 'Poppins', sans-serif;
-        color: #ed2788;
-        text-align: center;
-    }
-
-    .vhs {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.04) 0px,
-            rgba(255,255,255,0.04) 1px,
-            transparent 2px,
-            transparent 4px
-        );
-        mix-blend-mode: overlay;
-        animation: vhsMove 0.25s infinite linear;
-        pointer-events: none;
-    }
-
-    @keyframes vhsMove {
-        from { background-position-y: 0; }
-        to { background-position-y: 4px; }
-    }
-
-    .particle {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: #ed2788;
-        box-shadow: 0 0 10px #ed2788, 0 0 20px #ed2788;
-        opacity: 0.8;
-        animation: float 6s infinite ease-in-out;
-    }
-
-    @keyframes float {
-        0% { transform: translateY(0) scale(1); opacity: 0.9; }
-        50% { transform: translateY(-100px) scale(1.2); opacity: 0.4; }
-        100% { transform: translateY(0) scale(1); opacity: 0.9; }
-    }
-
-    .vinyl {
-        position: relative;
-        width: 280px;
-        height: 280px;
-        border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, #111 5%, #000 60%, #111 95%);
-        box-shadow: 0 0 40px #ed2788aa, inset 0 0 60px #74064555;
-        animation: spin 8s linear infinite;
-        overflow: hidden;
-    }
-
-    .vinyl::before {
-        content: "";
-        position: absolute;
-        inset: 10px;
-        border-radius: 50%;
-        background: repeating-radial-gradient(circle, #000 0, #000 2px, #0a0a0a 3px, #000 4px);
-        opacity: 0.6;
-    }
-
-    .vinyl::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 70px;
-        height: 70px;
-        background: radial-gradient(circle at 30% 30%, #ed2788, #740645);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        box-shadow: 0 0 20px #ed2788, inset 0 0 10px #20062d;
-    }
-
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-
-    .shine {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 280px;
-        height: 280px;
-        border-radius: 50%;
-        background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.15), transparent 70%);
-        animation: spinShine 6s linear infinite;
-        mix-blend-mode: screen;
-        pointer-events: none;
-    }
-
-    @keyframes spinShine {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-
-    .lyrics {
-        margin-top: 50px;
-        font-size: 1.4rem;
-        letter-spacing: 1px;
-        text-shadow: 0 0 12px #ed2788, 0 0 24px #ed2788;
-        min-height: 70px;
-        white-space: pre;
-        overflow: hidden;
-    }
-
-    .btn {
-        margin-top: 25px;
-        padding: 12px 30px;
-        font-size: 1.1rem;
-        color: #fff;
-        background: linear-gradient(90deg, #ed2788, #740645);
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        box-shadow: 0 0 20px #ed2788, 0 0 40px #ed2788;
-        transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-        background: linear-gradient(90deg, #740645, #ed2788);
-        box-shadow: 0 0 25px #740645, 0 0 50px #ed2788;
-        transform: scale(1.05);
-    }
-
-    @media (max-width: 600px) {
-        .vinyl { width: 200px; height: 200px; }
-        .shine { width: 200px; height: 200px; }
-        .lyrics { font-size: 1.1rem; }
-    }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TV Girl - Lovers Rock</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="app">
+    <div class="left">
+      <div class="vinyl">
+        <div class="label"></div>
+      </div>
+    </div>
 
-<div class="vhs"></div>
-<div id="particles"></div>
+    <div class="right">
+      <div class="card">
+        <div class="title">
+          <div class="neon-dot"></div>
+          <div>
+            <div class="accent">TV Girl</div>
+            <div class="sub">Lovers Rock</div>
+          </div>
+        </div>
+        <div class="dialog">
+          <div id="lyric" class="line">Click "Next" to begin</div>
+        </div>
+        <div class="controls">
+          <button id="prev" class="btn">Prev</button>
+          <button id="next" class="btn next">Next</button>
+        </div>
+        <div class="muted small">Lyrics from "Lovers Rock" by TV Girl</div>
+      </div>
+    </div>
+  </div>
 
-<div class="vinyl">
-    <div class="shine"></div>
-</div>
+  <canvas id="particles"></canvas>
 
-<div class="lyrics" id="lyrics">Click "NEXT" to begin</div>
-<button class="btn" onclick="nextLine()">NEXT</button>
-
-<script>
-const lines = [
-    "But if you're too drunk to drive",
-    "and the music is right",
-    "She might let you stay",
-    "but just for the night",
-    "And if she grabs for your hand",
-    "and drags you along",
-    "She might want a kiss before the end of this song",
-    "Because love...",
-    "can burn like a cigarette",
-    "And leave you with nothing",
-    "And leave you with nothing"
-];
-
-let index = 0;
-const lyricBox = document.getElementById('lyrics');
-
-function typeWriter(text, i = 0) {
-    if (i < text.length) {
-        lyricBox.textContent += text.charAt(i);
-        setTimeout(() => typeWriter(text, i + 1), 50);
-    }
-}
-
-function nextLine() {
-    lyricBox.textContent = "";
-    typeWriter(lines[index]);
-    index = (index + 1) % lines.length;
-}
-
-const particleContainer = document.getElementById('particles');
-for (let i = 0; i < 40; i++) {
-    const p = document.createElement('div');
-    p.classList.add('particle');
-    p.style.left = Math.random() * 100 + '%';
-    p.style.top = Math.random() * 100 + '%';
-    p.style.animationDelay = (Math.random() * 6) + 's';
-    particleContainer.appendChild(p);
-}
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
