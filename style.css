@@ -21,7 +21,7 @@ html,body{
   color:#fff;
   overflow:hidden;
   position:relative;
-  perspective:1200px;          
+  perspective:1200px;
 }
 
 body::before{
@@ -66,8 +66,8 @@ body::after{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:40px;
-  padding:30px;
+  gap:clamp(20px, 5vw, 40px);
+  padding:clamp(20px, 5vw, 40px);
   position:relative;
   z-index:2;
   transform-style:preserve-3d;
@@ -75,8 +75,8 @@ body::after{
 
 .vinyl-wrap{
   position:relative;
-  width:320px;
-  height:320px;
+  width:clamp(200px, 35vw, 320px);
+  height:clamp(200px, 35vw, 320px);
   transform-style:preserve-3d;
   animation:levitate 8s ease-in-out infinite;
 }
@@ -114,25 +114,25 @@ body::after{
 }
 
 .label{
-  width:90px;
-  height:90px;
+  width:clamp(60px, 10vw, 90px);
+  height:clamp(60px, 10vw, 90px);
   border-radius:50%;
   background:conic-gradient(from 180deg,var(--pink),var(--deep-pink) 30%,var(--electric-blue) 60%,var(--indigo) 100%);
   box-shadow:inset 0 0 15px rgba(0,0,0,.8), 0 0 20px var(--pink);
 }
 
 .right{
-  width:440px;
-  max-width:50vw;
+  width:clamp(300px, 45vw, 440px);
+  max-width:90vw;
   display:flex;
   flex-direction:column;
-  gap:20px;
+  gap:clamp(15px, 3vw, 20px);
   transform-style:preserve-3d;
 }
 .card{
   background:rgba(255,255,255,.03);
-  border-radius:20px;
-  padding:28px;
+  border-radius:clamp(12px, 3vw, 20px);
+  padding:clamp(20px, 4vw, 28px);
   box-shadow:0 20px 50px rgba(2,2,8,.7);
   border:1px solid rgba(255,255,255,.05);
   backdrop-filter:blur(10px);
@@ -146,11 +146,11 @@ body::after{
 .title{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:clamp(10px, 2vw, 14px);
 }
 .neon-dot{
-  width:14px;
-  height:14px;
+  width:clamp(10px, 2vw, 14px);
+  height:clamp(10px, 2vw, 14px);
   border-radius:50%;
   background:var(--pink);
   box-shadow:0 0 14px var(--pink),0 0 28px var(--pink);
@@ -163,18 +163,18 @@ body::after{
 
 .sub{
   color:rgba(255,255,255,.65);
-  font-size:14px;
+  font-size:clamp(12px, 1.5vw, 14px);
 }
 
 .dialog{
-  margin-top:12px;
-  min-height:110px;
+  margin-top:clamp(10px, 2vw, 12px);
+  min-height:clamp(80px, 15vw, 110px);
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:20px;
-  border-radius:14px;
+  padding:clamp(15px, 3vw, 20px);
+  border-radius:clamp(10px, 2vw, 14px);
   background:rgba(16,10,30,.55);
   border:1px solid rgba(255,255,255,.06);
   position:relative;
@@ -197,7 +197,7 @@ body::after{
 }
 
 .line{
-  font-size:18px;
+  font-size:clamp(14px, 2.5vw, 18px);
   opacity:0;
   transform:translateY(12px);
   transition:all .5s ease;
@@ -220,18 +220,19 @@ body::after{
 
 .controls{
   display:flex;
-  gap:14px;
-  margin-top:14px;
+  gap:clamp(10px, 2vw, 14px);
+  margin-top:clamp(10px, 2vw, 14px);
 }
 .btn{
   background:linear-gradient(90deg, rgba(237,39,136,.05), rgba(15,71,159,.03));
   border:1px solid rgba(237,39,136,.35);
   color:#fff;
-  padding:12px 22px;
-  border-radius:14px;
+  padding:clamp(10px, 2vw, 12px) clamp(16px, 3vw, 22px);
+  border-radius:clamp(10px, 2vw, 14px);
   cursor:pointer;
   font-weight:600;
   transition:transform .2s, box-shadow .2s;
+  font-size:clamp(12px, 1.8vw, 16px);
 }
 .btn:hover{
   transform:scale(1.08);
@@ -248,15 +249,18 @@ body::after{
 
 .muted{
   color:rgba(255,255,255,.45);
-  font-size:11px;
+  font-size:clamp(10px, 1.5vw, 11px);
   text-align:center;
-  margin-top:10px;
+  margin-top:clamp(8px, 1.5vw, 10px);
 }
 
-@media (max-width:900px){
-  .app{flex-direction:column;padding:20px}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+@media (max-width: 900px){
+  .app{flex-direction:column;padding:clamp(15px, 5vw, 30px)}
   .left,.right{max-width:100%;width:100%}
-  .vinyl-wrap{width:250px;height:250px}
-  .line{font-size:15px}
+  .vinyl-wrap{width:clamp(180px, 50vw, 250px);height:clamp(180px, 50vw, 250px)}
+  .line{font-size:clamp(12px, 4vw, 16px)}
 }
-
