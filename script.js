@@ -15,6 +15,7 @@ const LINES = [
 const lyricEl = document.getElementById('lyric');
 const nextBtn = document.getElementById('next');
 const prevBtn = document.getElementById('prev');
+const audio = document.getElementById('bg-music'); // Получаем элемент аудио
 let index = -1;
 
 function showLine(i){
@@ -30,8 +31,20 @@ function showLine(i){
   }, 100);
 }
 
-nextBtn.onclick = ()=>showLine(index + 1);
-prevBtn.onclick = ()=>showLine(index - 1);
+nextBtn.onclick = () => {
+  if (audio.paused) {
+    audio.play().catch(err => console.log("Автозапуск заблокирован браузером:", err));
+  }
+  showLine(index + 1);
+};
+
+prevBtn.onclick = () => {
+  if (audio.paused) {
+    audio.play().catch(err => console.log("Автозапуск заблокирован браузером:", err));
+  }
+  showLine(index - 1);
+};
+
 showLine(0);
 
 const canvas = document.getElementById('particles');
