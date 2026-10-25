@@ -54,6 +54,14 @@ body::after{
   100%{background-position-y:6px}
 }
 
+/* ИЗМЕНЕНО: canvas с частицами теперь на весь экран */
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
+
 .app{
   min-height:100vh;
   display:flex;
@@ -77,23 +85,34 @@ body::after{
   50%{transform:translateY(-10px)}
 }
 
+/* ИЗМЕНЕНО: добавлены блики (conic-gradient), чтобы вращение было видно */
 .vinyl{
+  position:relative;
   width:100%;
   height:100%;
   border-radius:50%;
-  background:radial-gradient(circle at 50% 50%, rgba(255,255,255,.05) 0 2%, transparent 3%), radial-gradient(circle at 50% 50%, rgba(0,0,0,.9) 45%, #000 100%);
+  background:
+    conic-gradient(from 0deg,
+      transparent 0 8%,
+      rgba(255,255,255,.10) 12%,
+      transparent 16%,
+      transparent 58%,
+      rgba(255,255,255,.10) 62%,
+      transparent 66%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.05) 0 2%, transparent 3%),
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,.9) 45%, #000 100%);
   border:3px solid rgba(255,255,255,.02);
   box-shadow:0 15px 40px rgba(0,0,0,.7);
   display:flex;
   align-items:center;
   justify-content:center;
-  animation:spin 10s linear infinite;
-  animation-play-state: paused; 
+  animation:spin 6s linear infinite;
+  animation-play-state:paused;
   will-change:transform;
 }
 
 .vinyl.playing{
-  animation-play-state: running;
+  animation-play-state:running;
 }
 
 @keyframes spin{
@@ -107,7 +126,11 @@ body::after{
   border-radius:50%;
   background:conic-gradient(from 0deg, transparent 0 30%, rgba(255,255,255,.08) 50%, transparent 70%);
   animation:spin 5s linear infinite reverse;
+  animation-play-state:paused;
   will-change:transform;
+}
+.vinyl.playing .glare{
+  animation-play-state:running;
 }
 
 .label{
@@ -250,8 +273,9 @@ body::after{
   margin-top:clamp(8px, 1.5vw, 10px);
 }
 
+/* ИЗМЕНЕНО: пластинка исключена из отключения анимаций */
 @media (prefers-reduced-motion: reduce){
-  *{animation:none!important;transition:none!important}
+  *:not(.vinyl):not(.glare){animation:none!important;transition:none!important}
 }
 
 @media (max-width: 900px){
