@@ -10,7 +10,6 @@
   <div class="app">
     <div class="left">
       <div class="vinyl-wrap">
-        <!-- Добавили id="vinyl" -->
         <div id="vinyl" class="vinyl">
           <div class="glare"></div>
           <div class="label"></div>
@@ -28,7 +27,7 @@
           </div>
         </div>
         <div class="dialog">
-          <div id="lyric" class="line">click "next" to begin</div>
+          <div id="lyric" class="line show">click "next" to begin</div>
         </div>
         <div class="controls">
           <button id="prev" class="btn">prev</button>
@@ -41,7 +40,7 @@
 
   <canvas id="particles"></canvas>
 
-  <audio id="bg-music" src="lovers-rock.mp3" loop></audio>
+  <audio id="bg-music" src="lovers-rock.mp3" loop preload="auto"></audio>
 
   <script src="script.js"></script>
 </body>
