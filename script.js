@@ -19,28 +19,33 @@ const audio = document.getElementById('bg-music');
 const vinyl = document.getElementById('vinyl');
 let index = -1;
 
+audio.volume = 0.8;
+
+// Пластинка крутится ровно тогда, когда играет музыка
+audio.addEventListener('play',  () => vinyl.classList.add('playing'));
+audio.addEventListener('pause', () => vinyl.classList.remove('playing'));
+audio.addEventListener('error', () => {
+  console.error('Не удалось загрузить lovers-rock.mp3 — проверь имя файла и что он лежит рядом с index.html');
+});
+
 function showLine(i){
   if(i < 0) i = LINES.length - 1;
   if(i >= LINES.length) i = 0;
   index = i;
   lyricEl.classList.remove('show');
   setTimeout(()=>{
-    let text = LINES[i];
+    const text = LINES[i];
     if(text.startsWith("Because love")) lyricEl.innerHTML = `<span class="accent">${text}</span>`;
     else lyricEl.textContent = text;
     lyricEl.classList.add('show');
   }, 100);
 }
 
-function startPlayback() {
+function startPlayback(){
   if (audio.paused) {
-    audio.play()
-      .then(() => {
-        vinyl.classList.add('playing');
-      })
-      .catch(err => {
-        console.log("Браузер заблокировал автозапуск:", err);
-      });
+    audio.play().catch(err => {
+      console.log("Не удалось запустить музыку:", err);
+    });
   }
 }
 
@@ -54,8 +59,7 @@ prevBtn.onclick = () => {
   showLine(index - 1);
 };
 
-showLine(0);
-
+/* ---------- Частицы ---------- */
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let w, h;
