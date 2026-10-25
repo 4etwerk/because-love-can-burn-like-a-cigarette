@@ -15,7 +15,8 @@ const LINES = [
 const lyricEl = document.getElementById('lyric');
 const nextBtn = document.getElementById('next');
 const prevBtn = document.getElementById('prev');
-const audio = document.getElementById('bg-music'); // Получаем элемент аудио
+const audio = document.getElementById('bg-music');
+const vinyl = document.getElementById('vinyl');
 let index = -1;
 
 function showLine(i){
@@ -31,17 +32,25 @@ function showLine(i){
   }, 100);
 }
 
-nextBtn.onclick = () => {
+function startPlayback() {
   if (audio.paused) {
-    audio.play().catch(err => console.log("Автозапуск заблокирован браузером:", err));
+    audio.play()
+      .then(() => {
+        vinyl.classList.add('playing');
+      })
+      .catch(err => {
+        console.log("Браузер заблокировал автозапуск:", err);
+      });
   }
+}
+
+nextBtn.onclick = () => {
+  startPlayback();
   showLine(index + 1);
 };
 
 prevBtn.onclick = () => {
-  if (audio.paused) {
-    audio.play().catch(err => console.log("Автозапуск заблокирован браузером:", err));
-  }
+  startPlayback();
   showLine(index - 1);
 };
 
